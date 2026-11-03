@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["18.x", "20.x"]
+        node-version: ["20.x", "22.x"]
 
     steps:
       - name: Checkout actions
@@ -17,9 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
+
+      - name: Use Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Build
         run: |
-          npm i
-          npm run build
+          bun install --frozen-lockfile
+          bun run build

@@ -33,7 +33,7 @@ docker compose up -d
 
 ## 常规部署
 
-首先你需要 [Node.js](https://nodejs.org/en/download/package-manager/all) 环境
+首先你需要 [Node.js](https://nodejs.org/en/download/package-manager/all) 20 或以上版本和 [Bun](https://bun.sh/) 环境
 
 ```
 # Clone 库 并跳转至该文件夹
@@ -42,21 +42,30 @@ cd yet-another-sub-web
 # 当然你可以修改配置在 .env
 # NEXT_PUBLIC_SHORTURL 为短链接服务
 # NEXT_PUBLIC_BACKENDS 为后端，请使用|分隔
-# 安装依赖环境并测试，你也可以使用yarn/pnpm/bun
-npm i
-npm run dev
+# 安装依赖环境并测试
+bun install --frozen-lockfile
+bun run dev
 ```
 
 浏览器打开 [http://localhost:3000](http://localhost:3000/) 来查看是否正常运行.
 
-当一切就绪后，你可以打包构建运行它
+当一切就绪后，你可以打包构建它，默认静态导出到 `out/` 目录，可部署到任意静态托管服务或用任意 Web 服务器托管
 
 ```
-npm run build
-npm run start
+bun run build
+bunx serve out -l 3000
 ```
 
 此时打开 [http://localhost:3000](http://localhost:3000/) 即可正常使用。
+
+如果想用 Node.js 运行，可以在构建时设置 `NEXT_OUTPUT=standalone`，然后运行生成的服务（`next start` 不支持静态导出模式）：
+
+```
+NEXT_OUTPUT=standalone bun run build
+cp -r .next/static .next/standalone/.next/static
+PORT=3000 node .next/standalone/server.js
+```
+
 需要**常驻进程**，可使用：`screen`，`pm2`，`nohup`，`systemctl`
 
 可能你还需要反代，推荐使用 `Caddy` 轻量化反代，仅需加入到 `CaddyFile` 这些即可使用：
