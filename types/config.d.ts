@@ -8,9 +8,10 @@ interface Clients {
 }
 interface SwitchCell {
     title: string
-    key: "strict" | "upload" | "emoji" | "add_emoji" | "remove_emoji" | "append_type" | "tfo" | "udp" | "list" | "sort" |
-    "script" | "insert" | "scv" | "fdn" | "expand" | "append_info" | "prepend" | "classic" | "tls13"
+    description: string
+    key: SwitchKey
 }
+type SwitchKey = "tfo" | "udp" | "scv" | "append_type" | "emoji" | "list"
 interface RemoteConfigURL {
     label: string
     value: string
@@ -19,21 +20,15 @@ interface RemoteCategory {
     category: string
     items: RemoteConfigURL[]
 }
-interface Params {
-    mode: 'easy' | 'hard';
-    subLink: string;
-    shortSubLink: string;
-    shortSubLoading: boolean;
-    backend: string;
+interface SubForm extends Record<SwitchKey, boolean> {
     url: string;
     target: string;
+    backend: string;
     config: string;
     include: string;
     exclude: string;
-    tfo: boolean;
-    udp: boolean;
-    scv: boolean;
-    append_type: boolean;
-    emoji: boolean;
-    list: boolean;
-};
+}
+interface SubFormErrors {
+    url?: string;
+    target?: string;
+}

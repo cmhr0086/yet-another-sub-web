@@ -21,12 +21,12 @@ export const config: Config = {
         混合订阅: "mixed"
     },
     switchCells: [
-        { title: "TCP 快速打开", key: "tfo" },
-        { title: "UDP 启用", key: "udp" },
-        { title: "关闭证书检查", key: "scv" },
-        { title: "显示节点类型", key: "append_type" },
-        { title: "显示 Emoji 旗帜", key: "emoji" },
-        { title: "仅输出为节点", key: "list" }
+        { title: "TCP 快速打开", description: "降低连接延迟，需要节点支持", key: "tfo" },
+        { title: "UDP 启用", description: "为节点开启 UDP 转发", key: "udp" },
+        { title: "关闭证书检查", description: "跳过 TLS 证书校验，存在安全风险", key: "scv" },
+        { title: "显示节点类型", description: "在节点名前加上协议类型", key: "append_type" },
+        { title: "显示 Emoji 旗帜", description: "在节点名前加上国旗", key: "emoji" },
+        { title: "仅输出为节点", description: "只输出节点，不包含规则和策略组", key: "list" }
     ],
     remoteConfig: [
         {

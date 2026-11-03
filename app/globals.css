@@ -2,8 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Noto Sans Mono CJK SC", monospace;
+
+    --surface: 244 247 251;
+    --panel: 255 255 255;
+    --container: 232 239 246;
+    --container-hover: 223 233 243;
+    --outline: 219 227 236;
+    --on: 28 39 51;
+    --muted: 90 104 120;
+    --primary: 43 108 176;
+    --primary-hover: 31 90 150;
+    --on-primary: 255 255 255;
+    --app-bar: 43 108 176;
+    --on-app-bar: 255 255 255;
+    --error: 176 0 32;
+    --warning: 255 244 229;
+    --on-warning: 122 67 0;
+    --snackbar: 43 53 67;
+    --on-snackbar: 255 255 255;
+    --snackbar-action: 158 203 255;
+    --switch-off: 195 204 214;
+    --switch-thumb-off: 255 255 255;
+    --switch-on: 169 198 230;
+    --tonal-blue: 226 237 248;
+    --on-tonal-blue: 43 108 176;
+    --tonal-cyan: 220 240 245;
+    --on-tonal-cyan: 31 122 150;
+    --tonal-indigo: 229 232 244;
+    --on-tonal-indigo: 74 91 140;
+    --tonal-slate: 232 236 241;
+    --on-tonal-slate: 91 107 128;
+    --tonal-teal: 221 241 241;
+    --on-tonal-teal: 35 122 128;
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --surface: 18 24 32;
+    --panel: 27 35 45;
+    --container: 36 48 64;
+    --container-hover: 44 58 76;
+    --outline: 44 56 71;
+    --on: 228 235 242;
+    --muted: 162 176 191;
+    --primary: 158 203 255;
+    --primary-hover: 182 216 255;
+    --on-primary: 11 42 74;
+    --app-bar: 31 42 55;
+    --on-app-bar: 228 235 242;
+    --error: 255 180 171;
+    --warning: 58 42 18;
+    --on-warning: 255 207 138;
+    --snackbar: 228 235 242;
+    --on-snackbar: 28 39 51;
+    --snackbar-action: 43 108 176;
+    --switch-off: 74 88 104;
+    --switch-thumb-off: 192 203 216;
+    --switch-on: 63 106 150;
+    --tonal-blue: 29 48 71;
+    --on-tonal-blue: 158 203 255;
+    --tonal-cyan: 23 54 64;
+    --on-tonal-cyan: 143 211 232;
+    --tonal-indigo: 38 45 71;
+    --on-tonal-indigo: 179 191 235;
+    --tonal-slate: 41 49 59;
+    --on-tonal-slate: 192 203 216;
+    --tonal-teal: 23 58 59;
+    --on-tonal-teal: 143 220 220;
+
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-surface font-sans text-on antialiased;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
